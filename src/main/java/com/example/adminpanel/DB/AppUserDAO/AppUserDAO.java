@@ -90,7 +90,7 @@ public class AppUserDAO implements IAppUserDAO {
         }
     }
 
-    @Overridegit 
+    @Override
     public int getUserSubId(Long userID) {
         int id = 0;
         try {
