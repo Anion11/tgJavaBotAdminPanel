@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="703.0" prefWidth="941.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.adminpanel.Controller">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <TabPane prefHeight="675.0" prefWidth="901.0" tabClosingPolicy="UNAVAILABLE">
+     <tabs>
+       <Tab text="Генерация ключей">
+         <content>
+             <AnchorPane prefHeight="801.0" prefWidth="901.0">
+                 <children>
+                     <TableView fx:id="key_table" layoutX="323.0" layoutY="32.0" prefHeight="392.0" prefWidth="553.0">
+                     </TableView>
+                     <Button fx:id="keys_save_button" layoutX="40.0" layoutY="319.0" mnemonicParsing="false" onMouseClicked="#saveKeys" prefHeight="25.0" prefWidth="250.0" text="Сгенерировать ключи" />
+                     <TextField fx:id="keys_type" layoutX="40.0" layoutY="288.0" prefHeight="25.0" prefWidth="101.0" />
+                     <TextField fx:id="keys_count" layoutX="187.0" layoutY="288.0" prefHeight="25.0" prefWidth="101.0" />
+                     <Label layoutX="41.0" layoutY="259.0" prefHeight="17.0" prefWidth="91.0" text="Тип подписки" />
+                     <Label layoutX="188.0" layoutY="259.0" prefHeight="17.0" prefWidth="81.0" text="Количество" />
+                     <Button fx:id="keys_txt_button" layoutX="322.0" layoutY="434.0" mnemonicParsing="false" onMouseClicked="#createTxt" prefHeight="32.0" prefWidth="552.0" text="Сгенерировать txt файл" />
+                 </children>
+             </AnchorPane>
+         </content>
+       </Tab>
+       <Tab text="Редактирование пользователей">
+         <content>
+             <AnchorPane prefHeight="801.0" prefWidth="901.0">
+                 <children>
+                     <TableView fx:id="user_table" layoutX="323.0" layoutY="32.0" prefHeight="392.0" prefWidth="553.0">
+                     </TableView>
+                     <Button fx:id="user_save" layoutX="27.0" layoutY="229.0" mnemonicParsing="false" onMouseClicked="#saveUser" prefHeight="31.0" prefWidth="263.0" text="Сохранить данные" />
+                     <TextField fx:id="user_surname" layoutX="28.0" layoutY="189.0" prefHeight="25.0" prefWidth="152.0" />
+                     <TextField fx:id="user_type" layoutX="26.0" layoutY="87.0" prefHeight="25.0" prefWidth="152.0" />
+                     <Label layoutX="27.0" layoutY="116.0" prefHeight="17.0" prefWidth="123.0" text="Имя пользователя" />
+                     <Label layoutX="26.0" layoutY="62.0" prefHeight="24.0" prefWidth="101.0" text="Тип подписки" />
+                     <TextField fx:id="user_name" layoutX="26.0" layoutY="133.0" prefHeight="25.0" prefWidth="152.0" />
+                     <Label layoutX="27.0" layoutY="165.0" prefHeight="23.0" prefWidth="147.0" text="Фамилия пользователя" />
+                     <Button fx:id="user_delete" layoutX="326.0" layoutY="434.0" mnemonicParsing="false" onMouseClicked="#deleteUser" prefHeight="27.0" prefWidth="202.0" text="Удалить пользователя" />
+                 </children>
+             </AnchorPane>
+         </content>
+       </Tab>
+         <Tab text="Добавление нового поста">
+             <content>
+                 <AnchorPane prefHeight="801.0" prefWidth="901.0">
+                     <children>
+                         <TableView fx:id="post_table" layoutX="323.0" layoutY="32.0" prefHeight="392.0" prefWidth="553.0">
+                         </TableView>
+                         <Button fx:id="post_add_button" layoutX="28.0" layoutY="393.0" mnemonicParsing="false" onMouseClicked="#addPost" prefHeight="31.0" prefWidth="263.0" text="Добавить пост" />
+                         <TextField fx:id="post_sub_type" layoutX="25.0" layoutY="348.0" prefHeight="25.0" prefWidth="152.0" />
+                         <TextField fx:id="post_sub_src" layoutX="26.0" layoutY="87.0" prefHeight="25.0" prefWidth="152.0" />
+                         <Label layoutX="27.0" layoutY="116.0" prefHeight="17.0" prefWidth="123.0" text="Описание к посту" />
+                         <Label layoutX="26.0" layoutY="62.0" prefHeight="24.0" prefWidth="101.0" text="Тип подписки" />
+                         <Label layoutX="25.0" layoutY="317.0" prefHeight="23.0" prefWidth="147.0" text="Название картинки" />
+                         <TextArea fx:id="post_sub_descr" layoutX="23.0" layoutY="135.0" prefHeight="182.0" prefWidth="295.0" />
+                     </children>
+                 </AnchorPane>
+             </content>
+         </Tab>
+     </tabs>
+   </TabPane>
+</VBox>
