@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public interface IAppUserDAO {
     ArrayList<AppUser> getAllSubscribers();
+    ArrayList<Long> getAllSubscribersIdByType(String type);
     void deleteUser(Long id);
     void updateUser(AppUser user);
-    int getUserSubId(Long userID);
 }

@@ -3,16 +3,14 @@ package com.example.adminpanel.entity;
 public class Subscribe {
     private int subscribe_id;
     private String subscribe_type;
-    private Boolean active;
 
-    public Boolean getActive() {
-        return active;
+    public void setSubscribeKey(String subscribe_key) {
+        this.subscribe_key = subscribe_key;
     }
-
-    public void setActive(Boolean active) {
-        this.active = active;
+    public String getSubscribeKey() {
+        return this.subscribe_key;
     }
-
+    private String subscribe_key;
     public int getSubscribeId() {
         return subscribe_id;
     }
