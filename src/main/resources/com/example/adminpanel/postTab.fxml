@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.adminpanel.Controllers.PostTabController"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <Button fx:id="post_add_button" layoutX="30.0" layoutY="449.0" mnemonicParsing="false" onMouseClicked="#sendPost" prefHeight="30.0" prefWidth="221.0" text="Отправить пост" />
+        <TextField fx:id="post_sub_src" layoutX="30.0" layoutY="399.0" prefHeight="25.0" prefWidth="247.0" />
+        <Label layoutX="27.0" layoutY="168.0" prefHeight="20.0" prefWidth="123.0" text="Описание к посту" />
+        <Label layoutX="30.0" layoutY="14.0" prefHeight="24.0" prefWidth="101.0" text="Тип подписки" />
+        <Label layoutX="30.0" layoutY="374.0" prefHeight="23.0" prefWidth="130.0" text="Название картинки" />
+        <TextArea fx:id="post_sub_descr" layoutX="26.0" layoutY="190.0" prefHeight="188.0" prefWidth="309.0" />
+        <ListView fx:id="post_sub_type" layoutX="28.0" layoutY="40.0" prefHeight="117.0" prefWidth="309.0" />
+    </children>
+</AnchorPane>
