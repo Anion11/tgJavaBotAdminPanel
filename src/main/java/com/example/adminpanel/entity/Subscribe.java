@@ -29,6 +29,6 @@ public class Subscribe {
 
     @Override
     public String toString() {
-        return "Подписка на данный момент активна : " + subscribe_type;
+        return subscribe_key + " : " + subscribe_type;
     }
 }

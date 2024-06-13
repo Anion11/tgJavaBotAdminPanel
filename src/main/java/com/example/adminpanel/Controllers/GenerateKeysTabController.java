@@ -3,6 +3,7 @@ package com.example.adminpanel.Controllers;
 import com.example.adminpanel.Application;
 import com.example.adminpanel.DB.SubscribeDAO.SubscribeDAO;
 import com.example.adminpanel.entity.Subscribe;
+import com.example.adminpanel.generateKeys.GenerateKeys;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -32,6 +33,7 @@ public class GenerateKeysTabController {
     private SubscribeDAO SubscribeDAO = new SubscribeDAO();
     TableColumn<Subscribe, String> keyColumn = new TableColumn<>("Key");
     TableColumn<Subscribe, String> typeColumn = new TableColumn<>("Type");
+    private GenerateKeys GenerateKeys = new GenerateKeys();
     @FXML
     void initialize() {
         keyColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getSubscribeKey()));
@@ -48,38 +50,15 @@ public class GenerateKeysTabController {
         ObservableList<Subscribe> data = FXCollections.observableArrayList(SubscribeDAO.getAllSubscribeKey());
         key_table.setItems(data);
     }
-    public void createTxt(MouseEvent mouseEvent) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save File");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text files (*.txt)", "*.txt"));
 
-        File file = fileChooser.showSaveDialog(Application.getPrimaryStage());
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            writer.write("Ключи:\n");
-            for (Object item : key_table.getItems()) {
-                writer.write(item.toString() + "\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void saveToTxtButtonClick(MouseEvent mouseEvent) {
+        GenerateKeys.createTxt(key_table);
     }
-    public void saveKeys(MouseEvent mouseEvent) {
+
+    public void generateKeysButtonClick(MouseEvent mouseEvent) {
         if (!keys_type.getText().isEmpty() && !keys_count.getText().isEmpty()) {
-            String characters = "abcdefghijklmnopqrstuvwxyz0123456789";
             int count = Integer.parseInt(keys_count.getText().trim());
-            for (int i = 0; i < count; i++) {
-                StringBuilder sb = new StringBuilder(6);
-                Random random = new Random();
-                for (int j = 0; j < 6; j++) {
-                    int randomIndex = random.nextInt(characters.length());
-                    sb.append(characters.charAt(randomIndex));
-                }
-                Subscribe subKey = new Subscribe();
-                subKey.setSubscribeType(keys_type.getText());
-                subKey.setSubscribeKey(sb.toString());
-                SubscribeDAO.setSubscribeKey(subKey);
-            }
+            GenerateKeys.saveKeys(keys_type.getText(), count);
             updateTableKeys();
         }
     }
