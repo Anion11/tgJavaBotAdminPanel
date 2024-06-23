@@ -1,8 +1,8 @@
 package com.example.adminpanel.generateKeys;
 
 import com.example.adminpanel.Application;
-import com.example.adminpanel.DB.SubscribeDAO.SubscribeDAO;
-import com.example.adminpanel.entity.Subscribe;
+import com.example.adminpanel.DB.DAO.SubscribeDAO.KeysDAO;
+import com.example.adminpanel.entity.SubscribeKey;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 
@@ -13,7 +13,8 @@ import java.io.IOException;
 import java.util.Random;
 
 public class GenerateKeys {
-    private SubscribeDAO SubscribeDAO = new SubscribeDAO();
+    private KeysDAO KeysDAO = new KeysDAO();
+
     public void createTxt(TableView table) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save File");
@@ -31,7 +32,7 @@ public class GenerateKeys {
         }
     }
 
-    public void saveKeys(String type, int count) {
+    public void saveKeys(int id, int count) {
         String characters = "abcdefghijklmnopqrstuvwxyz0123456789";
         for (int i = 0; i < count; i++) {
             StringBuilder sb = new StringBuilder(6);
@@ -40,10 +41,10 @@ public class GenerateKeys {
                 int randomIndex = random.nextInt(characters.length());
                 sb.append(characters.charAt(randomIndex));
             }
-            Subscribe subKey = new Subscribe();
-            subKey.setSubscribeType(type);
-            subKey.setSubscribeKey(sb.toString());
-            SubscribeDAO.setSubscribeKey(subKey);
+            SubscribeKey subKey = new SubscribeKey();
+            subKey.setSubscribeId(id);
+            subKey.setKey(sb.toString());
+            KeysDAO.create(subKey);
         }
     }
 }

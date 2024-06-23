@@ -4,33 +4,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="703.0" prefWidth="941.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" >
+<VBox alignment="CENTER" prefHeight="703.0" prefWidth="941.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.adminpanel.Controller">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <TabPane prefHeight="675.0" prefWidth="901.0" tabClosingPolicy="UNAVAILABLE">
-     <tabs>
-       <Tab text="Генерация ключей">
-         <content>
-             <AnchorPane prefHeight="801.0" prefWidth="901.0">
-                 <fx:include source="generateKeysTab.fxml"/>
-             </AnchorPane>
-         </content>
-       </Tab>
-       <Tab text="Редактирование пользователей">
-         <content>
-             <AnchorPane prefHeight="801.0" prefWidth="901.0">
-                 <fx:include source="userTab.fxml"/>
-             </AnchorPane>
-         </content>
-       </Tab>
-         <Tab text="Добавление нового поста">
-             <content>
-                 <AnchorPane prefHeight="801.0" prefWidth="901.0">
-                     <fx:include source="postTab.fxml"/>
-                 </AnchorPane>
-             </content>
-         </Tab>
-     </tabs>
-   </TabPane>
+   <children>
+       <AnchorPane prefHeight="656.0" prefWidth="901.0">
+           <TableView fx:id="table" layoutX="12.0" layoutY="46.0" prefHeight="454.0" prefWidth="865.0">
+           </TableView>
+         <Button layoutX="393.0" layoutY="555.0" mnemonicParsing="false" onMouseClicked="#addSubscribe" text="Добавить" />
+         <Label layoutX="38.0" layoutY="535.0" text="Введите тип" />
+         <Label layoutX="213.0" layoutY="535.0" text="Введите описание" />
+         <TextField fx:id="inputType" layoutX="38.0" layoutY="555.0" />
+         <TextField fx:id="inputDescr" layoutX="213.0" layoutY="555.0" />
+         <Button layoutX="497.0" layoutY="555.0" mnemonicParsing="false" onMouseClicked="#deleteSubscribe" text="Удалить" />
+         <Button layoutX="584.0" layoutY="555.0" mnemonicParsing="false" onMouseClicked="#updateSubscribe" text="Изменить" />
+         <Button layoutX="681.0" layoutY="595.0" mnemonicParsing="false" onMouseClicked="#createKeysSubscribe" text="Сгенирировать ключи" />
+         <TextField fx:id="inputCountKeys" layoutX="700.0" layoutY="555.0" prefHeight="25.0" prefWidth="101.0" />
+         <Label layoutX="700.0" layoutY="535.0" text="Кол-во ключей" />
+       </AnchorPane>
+   </children>
 </VBox>
