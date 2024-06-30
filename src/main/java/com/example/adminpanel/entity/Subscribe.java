@@ -1,7 +1,7 @@
 package com.example.adminpanel.entity;
 
 public class Subscribe {
-    private int subscribe_id;
+    private Long subscribe_id;
     private String subscribe_type;
     private String subscribe_descr;
 
@@ -13,14 +13,14 @@ public class Subscribe {
         this.subscribe_descr = subscribe_descr;
     }
 
-    public int getSubscribeId() {
+    public Long getSubscribeId() {
         return subscribe_id;
     }
     public String getStringSubscribeId() {
         return String.valueOf(subscribe_id);
     }
 
-    public void setSubscribeId(int subscribe_id) {
+    public void setSubscribeId(Long subscribe_id) {
         this.subscribe_id = subscribe_id;
     }
 

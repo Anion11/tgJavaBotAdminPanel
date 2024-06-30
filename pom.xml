@@ -16,6 +16,15 @@
 
     <dependencies>
         <dependency>
+
+            <groupId>org.telegram</groupId>
+
+            <artifactId>telegrambots</artifactId>
+
+            <version>6.0.1</version>
+
+        </dependency>
+        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>21</version>

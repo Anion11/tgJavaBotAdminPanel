@@ -32,7 +32,7 @@ public class GenerateKeys {
         }
     }
 
-    public void saveKeys(int id, int count) {
+    public void saveKeys(Long id, int count) {
         String characters = "abcdefghijklmnopqrstuvwxyz0123456789";
         for (int i = 0; i < count; i++) {
             StringBuilder sb = new StringBuilder(6);

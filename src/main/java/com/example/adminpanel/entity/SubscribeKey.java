@@ -1,9 +1,18 @@
 package com.example.adminpanel.entity;
 
 public class SubscribeKey {
-    private int subscribeId;
+    private Long id;
+    private Long subscribeId;
     private String key;
     private String type;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getType() {
         return type;
@@ -13,7 +22,7 @@ public class SubscribeKey {
         this.type = type;
     }
 
-    public void setSubscribeId(int id) {
+    public void setSubscribeId(Long id) {
         this.subscribeId = id;
     }
 
@@ -21,7 +30,7 @@ public class SubscribeKey {
         this.key = key;
     }
 
-    public int getSubscribeId() {
+    public Long getSubscribeId() {
         return subscribeId;
     }
 

@@ -30,7 +30,7 @@ public class KeysDAO implements IDAO<SubscribeKey> {
                 ResultSet rs = stmt.executeQuery("SELECT * FROM subscribe_keys LEFT JOIN subscribe on subscribe.id = subscribe_keys.subscribe_id");
                 while (rs.next()) {
                     SubscribeKey subKey = new SubscribeKey();
-                    subKey.setSubscribeId(rs.getInt("subscribe_id"));
+                    subKey.setSubscribeId(rs.getLong("subscribe_id"));
                     subKey.setKey(rs.getString("key"));
                     subKey.setType(rs.getString("type"));
                     subKeys.add(subKey);
@@ -47,13 +47,49 @@ public class KeysDAO implements IDAO<SubscribeKey> {
     }
 
     @Override
-    public SubscribeKey get(int id) {
+    public SubscribeKey get(Long id) {
         return null;
     }
 
-    @Override
-    public void delete(int id) {
+    public SubscribeKey getByKey(String key) {
+        SubscribeKey subKey = new SubscribeKey();
+        try {
+            Connection con  = db.getConnection();
+            Class.forName("org.postgresql.Driver");
+            try {
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM subscribe_keys WHERE key = '" + key + "'");
+                while (rs.next()) {;
+                    subKey.setId(rs.getLong("id"));
+                    subKey.setSubscribeId(rs.getLong("subscribe_id"));
+                    subKey.setKey(rs.getString("key"));
+                }
+                rs.close();
+                stmt.close();
+            } finally {
+                con.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return subKey;
+    }
 
+    @Override
+    public void delete(Long id) {
+        try {
+            Connection con  = db.getConnection();
+            Class.forName("org.postgresql.Driver");
+            try {
+                PreparedStatement st = con.prepareStatement("DELETE FROM subscribe_keys WHERE id = " + id);
+                st.executeUpdate();
+                st.close();
+            } finally {
+                con.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void create(SubscribeKey subKey) {
@@ -63,7 +99,7 @@ public class KeysDAO implements IDAO<SubscribeKey> {
             try {
                 PreparedStatement st = con.prepareStatement("INSERT INTO subscribe_keys (key, subscribe_id) VALUES (?, ?) ");
                 st.setString(1, subKey.getKey());
-                st.setInt(2, subKey.getSubscribeId());
+                st.setLong(2, subKey.getSubscribeId());
                 st.executeUpdate();
                 st.close();
             } finally {

@@ -30,7 +30,7 @@ public class SubscribeDAO implements IDAO<Subscribe> {
                 ResultSet rs = stmt.executeQuery("SELECT * FROM subscribe");
                 while (rs.next()) {
                     Subscribe sub = new Subscribe();
-                    sub.setSubscribeId(rs.getInt("id"));
+                    sub.setSubscribeId(rs.getLong("id"));
                     sub.setSubscribeDescr(rs.getString("descr"));
                     sub.setSubscribeType(rs.getString("type"));
                     subs.add(sub);
@@ -47,7 +47,7 @@ public class SubscribeDAO implements IDAO<Subscribe> {
     }
 
     @Override
-    public Subscribe get(int id) {
+    public Subscribe get(Long id) {
         Subscribe sub = new Subscribe();
         try {
             Connection con  = db.getConnection();
@@ -56,7 +56,31 @@ public class SubscribeDAO implements IDAO<Subscribe> {
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery("SELECT * FROM subscribe WHERE id = " + id);
                 while (rs.next()) {
-                    sub.setSubscribeId(rs.getInt("id"));
+                    sub.setSubscribeId(rs.getLong("id"));
+                    sub.setSubscribeDescr(rs.getString("descr"));
+                    sub.setSubscribeType(rs.getString("type"));
+                }
+                rs.close();
+                stmt.close();
+            } finally {
+                con.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sub;
+    }
+
+    public Subscribe getSubscribeByType(String type) {
+        Subscribe sub = new Subscribe();
+        try {
+            Connection con  = db.getConnection();
+            Class.forName("org.postgresql.Driver");
+            try {
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM subscribe WHERE type = '" + type + "'");
+                while (rs.next()) {
+                    sub.setSubscribeId(rs.getLong("id"));
                     sub.setSubscribeDescr(rs.getString("descr"));
                     sub.setSubscribeType(rs.getString("type"));
                 }
@@ -72,7 +96,7 @@ public class SubscribeDAO implements IDAO<Subscribe> {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         try {
             Connection con  = db.getConnection();
             Class.forName("org.postgresql.Driver");
@@ -118,7 +142,7 @@ public class SubscribeDAO implements IDAO<Subscribe> {
                 PreparedStatement st = con.prepareStatement("UPDATE subscribe SET type = ?, descr = ? where id = ?");
                 st.setString(1, subscribe.getSubscribeType());
                 st.setString(2, subscribe.getSubscribeDescr());
-                st.setInt(3, subscribe.getSubscribeId());
+                st.setLong(3, subscribe.getSubscribeId());
                 st.executeUpdate();
                 st.close();
             } finally {
